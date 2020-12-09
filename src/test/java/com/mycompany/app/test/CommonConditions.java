@@ -18,5 +18,6 @@ public class CommonConditions {
     @AfterMethod
     public void stopBrowser() {
         driver.close();
+        driver.quit();
     }
 }
