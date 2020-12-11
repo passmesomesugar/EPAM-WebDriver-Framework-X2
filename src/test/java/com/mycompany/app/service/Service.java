@@ -10,12 +10,12 @@ public class Service {
     private WebDriver driver = DriverSingleton.getDriver();
     private CalculatorPage calculatorPage;
 
-    public SearchResultsPage openCloudGoogleCalculatorPage() {
+    public Service openCloudGoogleCalculatorPage() {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
         String request = "Google Cloud Platform Pricing Calculator";
         SearchResultsPage searchPage = homePage.returnSearchResult(request);
         searchPage.openCalculator();
-        return searchPage;
+        return this;
     }
 }
