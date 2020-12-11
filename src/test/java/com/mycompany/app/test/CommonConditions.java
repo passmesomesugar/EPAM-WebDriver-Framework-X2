@@ -1,5 +1,6 @@
 package com.mycompany.app.test;
 
+import com.mycompany.app.driver.DriverSingleton;
 import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,13 +12,11 @@ public class CommonConditions {
 
     @BeforeMethod
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\PC\\Desktop\\Selenium\\chromedriver_win32\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = DriverSingleton.getDriver();
     }
 
     @AfterMethod
     public void stopBrowser() {
-        driver.close();
-        driver.quit();
+       // DriverSingleton.closeDriver();
     }
 }
