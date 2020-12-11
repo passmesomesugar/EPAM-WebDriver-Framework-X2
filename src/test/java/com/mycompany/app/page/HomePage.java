@@ -1,6 +1,5 @@
 package com.mycompany.app.page;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,14 +15,13 @@ public class HomePage extends AbstractGoogleCloudPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public SearchPage returnSearchResult(String request) {
+    public SearchResultsPage returnSearchResult(String request) {
         waitAndClick(searchBar);
         searchBar.sendKeys(request);
         click(searchBar);
-        return new SearchPage(driver);
+        return new SearchResultsPage(driver);
     }
 
-    @Override
     public HomePage openPage() {
         driver.navigate().to(BASE_URL);
         return this;

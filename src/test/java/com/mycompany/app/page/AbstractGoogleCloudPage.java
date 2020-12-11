@@ -8,14 +8,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class AbstractGoogleCloudPage {
     protected WebDriver driver;
-
-    protected abstract AbstractGoogleCloudPage openPage();
-
     protected final int WAIT_TIMEOUT_SECONDS = 10;
 
     protected AbstractGoogleCloudPage(WebDriver driver) {
         this.driver = driver;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     protected void waitForVisibility(WebElement element) {
         new WebDriverWait(driver, 20)
