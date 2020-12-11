@@ -13,12 +13,11 @@ public class SimpleSampleTest extends CommonConditions {
 
     @Test
     public void openCalc() {
-//        service.openCloudGoogleCalculatorPage();
-//        return service;
-        HomePage homePage = new HomePage(driver);
-        homePage.openPage();
-        String request = "Google Cloud Platform Pricing Calculator";
-        SearchResultsPage searchPage = homePage.returnSearchResult(request);
-        searchPage.openCalculator();
+        service.openCloudGoogleCalculatorPage();
+//        HomePage homePage = new HomePage(driver);
+//        homePage.openPage();
+//        String request = "Google Cloud Platform Pricing Calculator";
+//        SearchResultsPage searchPage = homePage.returnSearchResult(request);
+//        searchPage.openCalculator();
     }
 }
