@@ -1,8 +1,8 @@
 package com.mycompany.app.service;
 
-import com.mycompany.app.model.Calculator;
+import com.mycompany.app.model.CalculatorModel;
 
-public class CalculatorCreator {
+public class CalculatorModelCreator {
     public static final String TEST_DATA_NUMBER_OF_INSTANCES = "testdata.calculator.numberofinstances";
     public static final String TEST_DATA_SOFTWARE = "testdata.calculator.software";
     public static final String TEST_DATA_MACHINE_CLASS = "testdata.calculator.machineclass";
@@ -16,8 +16,8 @@ public class CalculatorCreator {
     public static final String TESTDATA_COMMITTED_USAGE = "testdata.calculator.committedusage";
     public static final String TESTDATA_EXPECTED_ESTIMATE = "testdata.calculator.expectedestimate";
 
-    public static Calculator withCredentialsFromProperty() {
-        return new Calculator(TestDataReader.getTestData(TEST_DATA_NUMBER_OF_INSTANCES),
+    public static CalculatorModel withCredentialsFromProperty() {
+        return new CalculatorModel(TestDataReader.getTestData(TEST_DATA_NUMBER_OF_INSTANCES),
                 TestDataReader.getTestData(TEST_DATA_SOFTWARE),
                 TestDataReader.getTestData(TEST_DATA_MACHINE_CLASS),
                 TestDataReader.getTestData(TEST_DATA_SERIES),

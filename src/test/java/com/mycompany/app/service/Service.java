@@ -1,6 +1,7 @@
 package com.mycompany.app.service;
 
 import com.mycompany.app.driver.DriverSingleton;
+import com.mycompany.app.model.CalculatorModel;
 import com.mycompany.app.page.CalculatorPage;
 import com.mycompany.app.page.HomePage;
 import com.mycompany.app.page.SearchResultsPage;
@@ -20,7 +21,7 @@ public class Service {
         return this;
     }
 
-    public Service inputCalculatorData() {
+    public Service inputCalculatorData(CalculatorModel calculatorModel) {
         calculatorPage
                 .activateFrame()
                 .selectComputeEngine()

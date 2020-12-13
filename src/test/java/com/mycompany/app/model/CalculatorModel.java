@@ -2,7 +2,7 @@ package com.mycompany.app.model;
 
 import java.util.Objects;
 
-public class Calculator {
+public class CalculatorModel {
     private String numberOfInstances;
     private String operatingSystem;
     private String machineClass;
@@ -16,7 +16,7 @@ public class Calculator {
     private String committedUsage;
     private Double estimation;
 
-    public Calculator(
+    public CalculatorModel(
             String numberOfInstances,
             String operatingSystem,
             String machineClass,
@@ -117,7 +117,7 @@ public class Calculator {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Calculator that = (Calculator) o;
+        CalculatorModel that = (CalculatorModel) o;
         return Objects.equals(numberOfInstances, that.numberOfInstances) &&
                 Objects.equals(operatingSystem, that.operatingSystem) &&
                 Objects.equals(machineClass, that.machineClass) &&
