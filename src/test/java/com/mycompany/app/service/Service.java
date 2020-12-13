@@ -24,7 +24,18 @@ public class Service {
         calculatorPage
                 .activateFrame()
                 .selectComputeEngine()
-                .inputNumberOfInstances();
+                .inputNumberOfInstances()
+                .inputOS()
+                .inputMachineClass()
+                .inputSeries()
+                .inputSeriesN1()
+                .inputInstanceType()
+                .inputGPU()
+                .inputSSD()
+                .inputLocation()
+                .inputCommitedUsage()
+                .addToEstimate()
+        ;
         return this;
     }
 }
