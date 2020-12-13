@@ -3,6 +3,7 @@ package com.mycompany.app.page;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,20 +13,8 @@ public abstract class AbstractGoogleCloudPage {
 
     protected AbstractGoogleCloudPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(this.driver, this);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     protected void waitForVisibility(WebElement element) {
         new WebDriverWait(driver, 20)

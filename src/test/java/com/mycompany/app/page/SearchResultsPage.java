@@ -11,7 +11,7 @@ public class SearchResultsPage extends AbstractGoogleCloudPage {
 
     protected SearchResultsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(this.driver, this);
+        //PageFactory.initElements(this.driver, this);
     }
 
     public CalculatorPage openCalculator() {

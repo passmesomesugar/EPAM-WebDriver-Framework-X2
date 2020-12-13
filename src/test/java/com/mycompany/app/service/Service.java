@@ -15,7 +15,16 @@ public class Service {
         homePage.openPage();
         String request = "Google Cloud Platform Pricing Calculator";
         SearchResultsPage searchPage = homePage.returnSearchResult(request);
-        searchPage.openCalculator();
+        calculatorPage = searchPage.openCalculator()
+        ;
+        return this;
+    }
+
+    public Service inputCalculatorData() {
+        calculatorPage
+                .activateFrame()
+                .selectComputeEngine()
+                .inputNumberOfInstances();
         return this;
     }
 }
