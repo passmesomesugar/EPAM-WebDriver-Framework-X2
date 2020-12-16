@@ -185,4 +185,10 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         addToEstimate.click();
         return this;
     }
+
+    public EstimationPage getAnEstimate() {
+        waitForVisibility(addToEstimate);
+        addToEstimate.click();
+        return new EstimationPage(driver);
+    }
 }
