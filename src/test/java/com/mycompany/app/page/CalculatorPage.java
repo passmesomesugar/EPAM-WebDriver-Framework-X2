@@ -103,9 +103,9 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         return this;
     }
 
-    public CalculatorPage inputNumberOfInstances() {
+    public CalculatorPage inputNumberOfInstances(String number) {
         waitForVisibility(numberOfInstances);
-        numberOfInstances.sendKeys("4");
+        numberOfInstances.sendKeys(number);
         return this;
     }
 

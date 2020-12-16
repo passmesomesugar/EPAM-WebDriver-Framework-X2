@@ -25,7 +25,7 @@ public class Service {
         calculatorPage
                 .activateFrame()
                 .selectComputeEngine()
-                .inputNumberOfInstances()
+                .inputNumberOfInstances(calculatorModel.getNumberOfInstances())
                 .inputOS()
                 .inputMachineClass()
                 .inputSeries()
