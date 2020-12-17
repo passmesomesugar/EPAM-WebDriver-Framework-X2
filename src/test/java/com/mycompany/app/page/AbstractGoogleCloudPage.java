@@ -1,11 +1,11 @@
 package com.mycompany.app.page;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 
 public abstract class AbstractGoogleCloudPage {
     protected WebDriver driver;
@@ -40,6 +40,19 @@ public abstract class AbstractGoogleCloudPage {
         new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.visibilityOf(element));
         element.click();
+    }
+
+    public void clickThroughJS(WebElement webElement) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
+    }
+
+    public void specifyOptionFromDropDownList(WebElement dropDownList, String option) {
+        waitForVisibility(dropDownList);
+        clickThroughJS(dropDownList);
+        String xpath = String.format("//md-select-menu//md-option//div[contains(text(),'%s')]", option);
+        WebElement specifiedOption = driver.findElement(By.xpath(xpath));
+        waitForVisibility(specifiedOption);
+        clickThroughJS(specifiedOption);
     }
 }
 

@@ -6,6 +6,7 @@ import com.mycompany.app.page.CalculatorPage;
 import com.mycompany.app.page.EstimationPage;
 import com.mycompany.app.page.HomePage;
 import com.mycompany.app.page.SearchResultsPage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class Service {
@@ -28,7 +29,7 @@ public class Service {
                 .activateFrame()
                 .selectComputeEngine()
                 .inputNumberOfInstances(calculatorModel.getNumberOfInstances())
-                .inputOS()
+                //.inputOS()
                 .inputMachineClass()
                 .inputSeries()
                 .inputSeriesN1()
@@ -38,6 +39,7 @@ public class Service {
                 .inputLocation()
                 .inputCommitedUsage()
                 .addToEstimate()
+               // .openNewTab()
         ;
         return this;
     }

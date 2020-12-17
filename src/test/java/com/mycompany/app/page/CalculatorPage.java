@@ -109,9 +109,10 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         return this;
     }
 
-    public CalculatorPage inputOS() {
-        operatingSystem.click();
-        optionFreeOS.click();
+    public CalculatorPage inputOS(String optionOS) {
+        //operatingSystem.click();
+        //optionFreeOS.click();
+        specifyOptionFromDropDownList(operatingSystem, optionOS);
         return this;
     }
 

@@ -12,7 +12,6 @@ public class HomePage extends AbstractGoogleCloudPage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        //PageFactory.initElements(this.driver, this);
     }
 
     public SearchResultsPage returnSearchResult(String request) {
