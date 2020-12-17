@@ -1,10 +1,12 @@
 package com.mycompany.app.page;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         super(driver);
     }
 
+    private final Logger log = LogManager.getRootLogger();
     static ArrayList<String> tabs;
     public static Double calculatorPagePriceEstimation;
     //
@@ -211,15 +214,49 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         return this;
     }
 
+    public CalculatorPage emailEstimate() {
+        waitForVisibility(emailEstimateElement);
+        emailEstimateElement.click();
+        waitForVisibility(buttonInputMail);
+        return this;
+    }
+
     public CalculatorPage openNewTab() {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         return this;
     }
-//    public EstimationPage getAnEstimate() {
-//        waitForVisibility(addToEstimate);
-//        addToEstimate.click();
-//        return new EstimationPage(driver);
-//    }
+
+    public CalculatorPage inputEmailAddress() {
+        //ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(0));
+        driver.switchTo().frame(0);
+        driver.switchTo().frame("myFrame");
+        buttonInputMail.sendKeys(Keys.CONTROL + "v");
+        return this;
+    }
+
+    public CalculatorPage sendEmail() {
+        waitAndClick(buttonSendEmail);
+        buttonSendEmail.click();
+        return this;
+    }
+
+    public CalculatorPage getPriceFromCalculator() {
+        WebElement priceCalculator = new WebDriverWait(driver, 3)
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//md-card-content[@id='resultBlock']//div/b[contains(text(),Total)]")));
+        String priceString = priceCalculator
+                .getText()
+                .replace("1 month", "")
+                .replaceAll("[^0-9.]", "");
+        calculatorPagePriceEstimation = Double.parseDouble(priceString);
+        return this;
+    }
+
+    public CalculatorPage switchToMailPage() {
+        driver.switchTo().window(CalculatorPage.tabs.get(1));
+        return this;
+    }
+
 }

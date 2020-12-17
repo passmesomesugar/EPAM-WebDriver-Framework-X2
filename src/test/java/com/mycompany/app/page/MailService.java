@@ -49,13 +49,18 @@ public class MailService extends AbstractGoogleCloudPage {
     }
 
     public MailService copyTemporaryEmail() throws IOException, UnsupportedFlavorException {
-        String clipboardString;
+        String clipboardStringContainsEmail;
         do {
             copyTemporaryEmailAddressButtonWebElement.click();
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             Clipboard clipboard = toolkit.getSystemClipboard();
-            clipboardString = (String) clipboard.getData(DataFlavor.stringFlavor);
-        } while (!(clipboardString.contains("@")));
+            clipboardStringContainsEmail = (String) clipboard.getData(DataFlavor.stringFlavor);
+        } while (!(clipboardStringContainsEmail.contains("@")));
+        return this;
+    }
+
+    public MailService switchToCalculator() {
+        driver.switchTo().window(CalculatorPage.tabs.get(0));
         return this;
     }
 

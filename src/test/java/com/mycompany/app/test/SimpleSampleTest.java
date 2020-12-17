@@ -8,6 +8,7 @@ import com.mycompany.app.page.MailService;
 import com.mycompany.app.service.CalculatorCreator;
 //import com.mycompany.app.service.Service;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -37,10 +38,28 @@ public class SimpleSampleTest extends CommonConditions {
                 .inputLocation(calculatorModel.getLocation())
                 .inputCommitedUsage(calculatorModel.getCommittedUsage())
                 .addToEstimate()
+                .emailEstimate()
                 .openNewTab();
         MailService mailService = new MailService(driver)
                 .getToTempMailServiceHomePage()
                 .turnTheNightModeOn()
-                .copyTemporaryEmail();
+                .copyTemporaryEmail()
+                .switchToCalculator()
+                //
+                ;
+        calculatorPage
+                .inputEmailAddress()
+                .sendEmail()
+                .getPriceFromCalculator()
+                .switchToMailPage()
+        ;
+        mailService
+                .openLetter()
+                .getPriceInReceivedEMail();
+        Assert.assertEquals(CalculatorPage.calculatorPagePriceEstimation, MailService.priceInReceivedEMail, "Prices are equal");
+    }
+
+    public void checkEqualPrice() {
+        Assert.assertEquals(CalculatorPage.calculatorPagePriceEstimation, MailService.priceInReceivedEMail, "Prices are equal");
     }
 }
