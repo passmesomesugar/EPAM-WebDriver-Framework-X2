@@ -42,17 +42,9 @@ public abstract class AbstractGoogleCloudPage {
         element.click();
     }
 
-    public void clickThroughJS(WebElement webElement) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", webElement);
-    }
-
-    public void specifyOptionFromDropDownList(WebElement dropDownList, String option) {
-        waitForVisibility(dropDownList);
-        clickThroughJS(dropDownList);
-        String xpath = String.format("//md-select-menu//md-option//div[contains(text(),'%s')]", option);
-        WebElement specifiedOption = driver.findElement(By.xpath(xpath));
-        waitForVisibility(specifiedOption);
-        clickThroughJS(specifiedOption);
+    public WebElement waitAndClickByOptions(String locator, String value) {
+        return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(locator, value))));
     }
 }
 

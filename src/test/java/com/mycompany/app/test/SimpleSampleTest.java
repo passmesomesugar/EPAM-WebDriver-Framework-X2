@@ -6,10 +6,7 @@ import com.mycompany.app.page.CalculatorPage;
 import com.mycompany.app.page.HomePage;
 import com.mycompany.app.service.CalculatorModelCreator;
 import com.mycompany.app.service.Service;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class SimpleSampleTest extends CommonConditions {
@@ -29,12 +26,11 @@ public class SimpleSampleTest extends CommonConditions {
                 .inputNumberOfInstances(calculatorModel.getNumberOfInstances())
                 .inputOS(calculatorModel.getOperatingSystem())
                 //.inputOS()
-                .inputMachineClass()
-                .inputSeries()
-                .inputSeriesN1()
-                .inputInstanceType()
-                .inputGPU()
-                .inputSSD()
+                .inputMachineClass(calculatorModel.getMachineClass())
+                .inputSeries(calculatorModel.getSeries())
+                .inputMachineType(calculatorModel.getMachineType())
+                .inputGPU(calculatorModel.getAddGPU(), calculatorModel.getNumberOfGPUs(), calculatorModel.getGPUtype())
+                .inputSSD(calculatorModel.getLocalSSD())
                 .inputLocation()
                 .inputCommitedUsage()
                 .addToEstimate();

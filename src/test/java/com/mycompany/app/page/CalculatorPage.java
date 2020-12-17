@@ -19,44 +19,53 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
     //
     @FindBy(xpath = "//label[text()='Operating System / Software']/../md-select")
     private WebElement operatingSystem;
+    private String softwareMDOptions = "//md-option//div[contains(text(), \"%s\")]";
     //
-    @FindBy(xpath = "//md-option[@value='free']")
-    private WebElement optionFreeOS;
+//    @FindBy(xpath = "//md-option[@value='free']")
+//    private WebElement optionFreeOS;
+    //
     @FindBy(xpath = "//md-select[@placeholder='VM Class']")
-    private WebElement machineClass;
+    private WebElement machineClassWebElement;
+    private String machineClassMDOptions = "//md-select-menu[@style] /descendant::div[contains(text(), \"%s\")]";
     //
     @FindBy(xpath = "//md-select-menu[@style=contains(text(), '')]/descendant::md-option[@value='regular']")
     private WebElement regularMachine;
     //
     @FindBy(xpath = "//md-select[@placeholder='Series']")
     private WebElement seriesElement;
+    private String seriesMDOptions = "//div[contains(text(),\"%s\")]";
     //
     @FindBy(xpath = "//md-option[@value='n1']")
     private WebElement seriesN1;
     //
     @FindBy(xpath = "//md-select[@placeholder=\"Instance type\"]")
-    private WebElement machineType;
+    private WebElement machineTypeWebElement;
+    private String machineTypeOptions = "//div[contains(text(), \"%s\")]";
     //
     @FindBy(xpath = "//md-option[@value=\"CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8\"]") //doesnt work ~ strange
     private WebElement optionMachineType;
     //
     @FindBy(xpath = "//*[contains(@ng-model,'GPU')]")
-    private WebElement addGPU;
+    private WebElement addGPUWebElement;
     //
     @FindBy(xpath = "//md-select[@placeholder='Number of GPUs']")
     private WebElement numberOfGPUs;
+    private String numberOfGPUsMdOption = "//md-select-menu[@style]//md-option[@value=\"%s\"]";
     //
     @FindBy(xpath = "//div[normalize-space()='1']/parent::md-option")
     private WebElement inputNumberOfGPU;
     //
     @FindBy(xpath = "//md-select[@placeholder='GPU type']")
     private WebElement GPUtype;
+    private String GPUtypesDiv = "//div[contains(text(), \"%s\")]";
     //
     @FindBy(xpath = "//md-option[@value='NVIDIA_TESLA_V100']")
     private WebElement inputTypeOfGPU;
+    private String typeOfGPUsDiv = "//div[contains(text(), \"%s\")]";
     //
     @FindBy(xpath = "//md-select[@placeholder='Local SSD']")
     private WebElement localSSD;
+    private String localSSDDiv = "//div[contains(text(), \"%s\")]";
     //
     @FindBy(xpath = "//div[normalize-space()='2x375 GB']/parent::md-option")
     private WebElement typeLocalSSD;
@@ -110,58 +119,64 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
     }
 
     public CalculatorPage inputOS(String optionOS) {
-        //operatingSystem.click();
-        //optionFreeOS.click();
-        specifyOptionFromDropDownList(operatingSystem, optionOS);
+        //waitAndClick(operatingSystem);
+        //waitForVisibility(operatingSystem);
+        click(operatingSystem);
+        waitAndClickByOptions(softwareMDOptions, optionOS);
         return this;
     }
 
-    public CalculatorPage inputMachineClass() {
-        click(machineClass);
-        click(regularMachine);
+    public CalculatorPage inputMachineClass(String machineClass) {
+        //waitForVisibility(machineClassWebElement);
+        click(machineClassWebElement);
+        waitAndClickByOptions(machineClassMDOptions, machineClass).click();
         return this;
     }
 
-    public CalculatorPage inputSeries() {
+    public CalculatorPage inputSeries(String series) {
         waitForVisibility(seriesElement);
-        seriesElement.click();
+        //waitUntilClickable(seriesElement);
+        click(seriesElement);
+        waitAndClickByOptions(seriesMDOptions, series).click();
         return this;
     }
 
-    public CalculatorPage inputSeriesN1() {
-        waitForVisibility(seriesN1);
-        seriesN1.click();
+    public CalculatorPage inputMachineType(String machineType) {
+        waitForVisibility(machineTypeWebElement);
+        click(machineTypeWebElement);
+        waitAndClickByOptions(machineTypeOptions, machineType).click();
+//        waitForVisibility(optionMachineType);
+//        optionMachineType.click();
         return this;
     }
 
-    public CalculatorPage inputInstanceType() {
-        waitForVisibility(machineType);
-        machineType.click();
-        waitForVisibility(optionMachineType);
-        optionMachineType.click();
+    public CalculatorPage inputGPU(Boolean addGPU, String numberOfGPUsValue, String typeOfGPUValue) {
+        if (addGPU == true) {
+            waitForVisibility(addGPUWebElement);
+            addGPUWebElement.click();
+            click(numberOfGPUs);
+            waitAndClickByOptions(numberOfGPUsMdOption, numberOfGPUsValue).click();
+            click(GPUtype);
+            waitAndClickByOptions(typeOfGPUsDiv, typeOfGPUValue).click();
+        }
+//        waitForVisibility(numberOfGPUs);
+//        numberOfGPUs.click();
+//        waitForVisibility(inputNumberOfGPU);
+//        inputNumberOfGPU.click();
+//        click(inputNumberOfGPU);
+//        waitForVisibility(GPUtype);
+//        GPUtype.click();
+//        waitForVisibility(inputTypeOfGPU);
+//        inputTypeOfGPU.click();
         return this;
     }
 
-    public CalculatorPage inputGPU() {
-        waitForVisibility(addGPU);
-        addGPU.click();
-        waitForVisibility(numberOfGPUs);
-        numberOfGPUs.click();
-        waitForVisibility(inputNumberOfGPU);
-        inputNumberOfGPU.click();
-        click(inputNumberOfGPU);
-        waitForVisibility(GPUtype);
-        GPUtype.click();
-        waitForVisibility(inputTypeOfGPU);
-        inputTypeOfGPU.click();
-        return this;
-    }
-
-    public CalculatorPage inputSSD() {
+    public CalculatorPage inputSSD(String SSDValue) {
         waitForVisibility(localSSD);
         localSSD.click();
-        waitForVisibility(typeLocalSSD);
-        typeLocalSSD.click();
+//        waitForVisibility(typeLocalSSD);
+//        typeLocalSSD.click();
+        waitAndClickByOptions(localSSDDiv, SSDValue).click();
         return this;
     }
 

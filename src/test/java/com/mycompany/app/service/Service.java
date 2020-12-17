@@ -24,25 +24,25 @@ public class Service {
         return this;
     }
 
-    public Service inputCalculatorData(CalculatorModel calculatorModel) {
-        calculatorPage
-                .activateFrame()
-                .selectComputeEngine()
-                .inputNumberOfInstances(calculatorModel.getNumberOfInstances())
-                //.inputOS()
-                .inputMachineClass()
-                .inputSeries()
-                .inputSeriesN1()
-                .inputInstanceType()
-                .inputGPU()
-                .inputSSD()
-                .inputLocation()
-                .inputCommitedUsage()
-                .addToEstimate()
-               // .openNewTab()
-        ;
-        return this;
-    }
+//    public Service inputCalculatorData(CalculatorModel calculatorModel) {
+//        calculatorPage
+////                .activateFrame()
+////                .selectComputeEngine()
+////                .inputNumberOfInstances(calculatorModel.getNumberOfInstances())
+//                //.inputOS()
+////                .inputMachineClass(calculatorModel.getMachineClass())
+////                .inputSeries()
+////                .inputSeriesN1()
+////                .inputInstanceType()
+////                .inputGPU()
+////                .inputSSD()
+////                .inputLocation()
+////                .inputCommitedUsage()
+////                .addToEstimate()
+//               // .openNewTab()
+//        ;
+//        return this;
+//    }
 
     public Double getAnEstimatePrice() {
         estimationPage = calculatorPage.getAnEstimate();
