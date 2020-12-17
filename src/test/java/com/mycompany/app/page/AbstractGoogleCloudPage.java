@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractGoogleCloudPage {
     protected WebDriver driver;
@@ -14,6 +15,7 @@ public abstract class AbstractGoogleCloudPage {
     protected AbstractGoogleCloudPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     protected void waitForVisibility(WebElement element) {

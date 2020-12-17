@@ -11,10 +11,11 @@ import java.util.ArrayList;
 public class CalculatorPage extends AbstractGoogleCloudPage {
     protected CalculatorPage(WebDriver driver) {
         super(driver);
-        //PageFactory.initElements(this.driver, this);
     }
 
     static ArrayList<String> tabs;
+    public static Double calculatorPagePriceEstimation;
+    //
     @FindBy(xpath = "//md-tab-item/div[@title='Compute Engine']")
     private WebElement computeEngine;
     //

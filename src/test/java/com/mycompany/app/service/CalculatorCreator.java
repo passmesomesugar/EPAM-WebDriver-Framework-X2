@@ -2,7 +2,7 @@ package com.mycompany.app.service;
 
 import com.mycompany.app.model.CalculatorModel;
 
-public class CalculatorModelCreator {
+public class CalculatorCreator {
     public static final String TEST_DATA_NUMBER_OF_INSTANCES = "testdata.calculator.numberofinstances";
     public static final String TEST_DATA_SOFTWARE = "testdata.calculator.software";
     public static final String TEST_DATA_MACHINE_CLASS = "testdata.calculator.machineclass";
