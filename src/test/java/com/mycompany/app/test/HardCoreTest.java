@@ -14,11 +14,9 @@ import org.testng.annotations.Test;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 
-public class SimpleSampleTest extends CommonConditions {
+public class HardCoreTest extends CommonConditions {
     private WebDriver driver = DriverSingleton.getDriver();
-    //private Service service = new Service();
     private CalculatorModel calculatorModel = CalculatorCreator.withCredentialsFromProperty();
-    private Double estimationPageCost;
 
     @Test
     public void openPage() throws IOException, UnsupportedFlavorException {
@@ -59,6 +57,7 @@ public class SimpleSampleTest extends CommonConditions {
         Assert.assertEquals(CalculatorPage.calculatorPagePriceEstimation, MailService.priceInReceivedEMail, "Prices are equal");
     }
 
+    @Test
     public void checkEqualPrice() {
         Assert.assertEquals(CalculatorPage.calculatorPagePriceEstimation, MailService.priceInReceivedEMail, "Prices are equal");
     }

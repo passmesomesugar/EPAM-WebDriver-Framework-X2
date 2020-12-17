@@ -3,7 +3,7 @@
 <suite name="Smoke" verbose="1">
     <test name="Cloud Google Calculator Access">
         <classes>
-            <class name="com.mycompany.app.test.CloudAccessTest"/>
+            <class name="com.mycompany.app.test.SmokeAccessTest"/>
         </classes>
     </test>
 </suite>
