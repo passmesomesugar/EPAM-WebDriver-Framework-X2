@@ -5,13 +5,13 @@ import com.mycompany.app.model.CalculatorModel;
 import com.mycompany.app.page.CalculatorPage;
 import com.mycompany.app.page.HomePage;
 import com.mycompany.app.service.CalculatorModelCreator;
-import com.mycompany.app.service.Service;
+//import com.mycompany.app.service.Service;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 public class SimpleSampleTest extends CommonConditions {
     private WebDriver driver = DriverSingleton.getDriver();
-    private Service service = new Service();
+    //private Service service = new Service();
     private CalculatorModel calculatorModel = CalculatorModelCreator.withCredentialsFromProperty();
     private Double estimationPageCost;
 
@@ -25,15 +25,15 @@ public class SimpleSampleTest extends CommonConditions {
                 .selectComputeEngine()
                 .inputNumberOfInstances(calculatorModel.getNumberOfInstances())
                 .inputOS(calculatorModel.getOperatingSystem())
-                //.inputOS()
                 .inputMachineClass(calculatorModel.getMachineClass())
                 .inputSeries(calculatorModel.getSeries())
                 .inputMachineType(calculatorModel.getMachineType())
                 .inputGPU(calculatorModel.getAddGPU(), calculatorModel.getNumberOfGPUs(), calculatorModel.getGPUtype())
                 .inputSSD(calculatorModel.getLocalSSD())
-                .inputLocation()
-                .inputCommitedUsage()
-                .addToEstimate();
-        //.openNewTab()
+                .inputLocation(calculatorModel.getLocation())
+                .inputCommitedUsage(calculatorModel.getCommittedUsage())
+                .addToEstimate()
+                .openNewTab()
+                ;
     }
 }

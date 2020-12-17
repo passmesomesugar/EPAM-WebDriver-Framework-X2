@@ -1,9 +1,12 @@
 package com.mycompany.app.page;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.ArrayList;
 
 public class CalculatorPage extends AbstractGoogleCloudPage {
     protected CalculatorPage(WebDriver driver) {
@@ -11,6 +14,7 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         //PageFactory.initElements(this.driver, this);
     }
 
+    static ArrayList<String> tabs;
     @FindBy(xpath = "//md-tab-item/div[@title='Compute Engine']")
     private WebElement computeEngine;
     //
@@ -71,13 +75,15 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
     private WebElement typeLocalSSD;
     //
     @FindBy(xpath = "//md-select[@placeholder='Datacenter location']")
-    private WebElement location;
+    private WebElement locationWebElement;
+    private String locationDiv = "//md-select-menu[@class=\"md-overflow\"]//div[contains(text(), \"%s\")]";
     //
     @FindBy(xpath = "//md-select-menu[@class='md-overflow']/descendant::div[contains(text(), 'Iowa')]/parent::md-option")
     private WebElement typeLocation;
     //
     @FindBy(xpath = "//md-select[@placeholder='Committed usage']")
     private WebElement committedUsage;
+    private String commitedUsageMdOption = "//div[@class=\"md-select-menu-container md-active md-clickable\"]//md-option[@ng-value=\"%s\"]";
     //
     @FindBy(xpath = "//md-select-menu[contains(@style, 'transform-origin')]//div[text()='1 Year']/parent::md-option")
     private WebElement typeCommittedUsage;
@@ -180,19 +186,21 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         return this;
     }
 
-    public CalculatorPage inputLocation() {
-        waitForVisibility(location);
-        location.click();
-        waitForVisibility(typeLocation);
-        typeLocation.click();
+    public CalculatorPage inputLocation(String locationString) {
+        waitForVisibility(locationWebElement);
+        locationWebElement.click();
+        waitAndClickByOptions(locationDiv, locationString).click();
+//        waitForVisibility(typeLocation);
+//        typeLocation.click();
         return this;
     }
 
-    public CalculatorPage inputCommitedUsage() {
+    public CalculatorPage inputCommitedUsage(String usage) {
         waitForVisibility(committedUsage);
         committedUsage.click();
-        waitForVisibility(typeCommittedUsage);
-        typeCommittedUsage.click();
+//        waitForVisibility(typeCommittedUsage);
+//        typeCommittedUsage.click();
+        waitAndClickByOptions(commitedUsageMdOption, usage).click();
         return this;
     }
 
@@ -202,9 +210,15 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         return this;
     }
 
-    public EstimationPage getAnEstimate() {
-        waitForVisibility(addToEstimate);
-        addToEstimate.click();
-        return new EstimationPage(driver);
+    public CalculatorPage openNewTab() {
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        return this;
     }
+//    public EstimationPage getAnEstimate() {
+//        waitForVisibility(addToEstimate);
+//        addToEstimate.click();
+//        return new EstimationPage(driver);
+//    }
 }
