@@ -15,11 +15,11 @@ public class SmokeAccessTest extends CommonConditions {
     private WebDriver driver = DriverSingleton.getDriver();
     private CalculatorModel calculatorModel = CalculatorCreator.withCredentialsFromProperty();
 
-//    @Test
-//    public void openPage() throws IOException, UnsupportedFlavorException {
-//        CalculatorPage calculatorPage = new HomePage(driver)
-//                .openPage()
-//                .returnSearchResult("Google Cloud Platform Pricing Calculator")
-//                .openCalculator();
-//    }
+    @Test
+    public void openPage() throws IOException, UnsupportedFlavorException {
+        CalculatorPage calculatorPage = new HomePage(driver)
+                .openPage()
+                .returnSearchResult("Google Cloud Platform Pricing Calculator")
+                .openCalculator();
+    }
 }

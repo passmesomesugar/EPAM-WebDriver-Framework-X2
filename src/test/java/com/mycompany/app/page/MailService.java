@@ -55,6 +55,7 @@ public class MailService extends AbstractGoogleCloudPage {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
             Clipboard clipboard = toolkit.getSystemClipboard();
             clipboardStringContainsEmail = (String) clipboard.getData(DataFlavor.stringFlavor);
+            log.info("MailService: pressing the copy email button");
         } while (!(clipboardStringContainsEmail.contains("@")));
         return this;
     }

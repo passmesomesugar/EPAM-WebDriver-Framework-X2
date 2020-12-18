@@ -1,5 +1,7 @@
 package com.mycompany.app.page;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractGoogleCloudPage {
     protected WebDriver driver;
     protected final int WAIT_TIMEOUT_SECONDS = 10;
+    public final Logger log = LogManager.getRootLogger();
 
     protected AbstractGoogleCloudPage(WebDriver driver) {
         this.driver = driver;

@@ -15,7 +15,7 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         super(driver);
     }
 
-    private final Logger log = LogManager.getRootLogger();
+
     static ArrayList<String> tabs;
     public static Double calculatorPagePriceEstimation;
     //

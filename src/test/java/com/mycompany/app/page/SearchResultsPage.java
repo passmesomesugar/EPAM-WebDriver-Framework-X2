@@ -15,6 +15,7 @@ public class SearchResultsPage extends AbstractGoogleCloudPage {
     public CalculatorPage openCalculator() {
         waitForVisibility(requiredSearchResult);
         click(requiredSearchResult);
+        log.info("CalculatorPage: openCalculator execution");
         return new CalculatorPage(driver);
     }
 }
