@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Smoke" verbose="1">
-    <test name="Cloud Google Calculator Access">
+<suite name="Price calculation" verbose="1">
+    <test name="Price calculation test">
         <classes>
             <class name="com.mycompany.app.test.HardCoreTest"/>
         </classes>
