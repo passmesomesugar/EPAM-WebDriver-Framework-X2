@@ -8,8 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class DriverSingleton {
     private static WebDriver driver;
 
-    private DriverSingleton() {
-    }
+//    private DriverSingleton() {
+//    }
 
     public static WebDriver getDriver() {
         if (null == driver) {
@@ -30,7 +30,7 @@ public class DriverSingleton {
     }
 
     public static void closeDriver() {
-//        driver.quit();
-//        driver = null;
+        driver.quit();
+        driver = null;
     }
 }
