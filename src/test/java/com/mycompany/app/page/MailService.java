@@ -45,6 +45,7 @@ public class MailService extends AbstractGoogleCloudPage {
 
     public MailService turnTheNightModeOn() {
         waitAndClick(nightMode);
+        log.info("Mail: Night mode on execution");
         return this;
     }
 
@@ -62,11 +63,13 @@ public class MailService extends AbstractGoogleCloudPage {
 
     public MailService switchToCalculator() {
         driver.switchTo().window(CalculatorPage.tabs.get(0));
+        log.info("Mail : switched to calc execution");
         return this;
     }
 
     public MailService openLetter() {
         waitAndClick(letterFromCalculator);
+        log.info("Mail: openLetter execution");
         return this;
     }
 
@@ -76,5 +79,6 @@ public class MailService extends AbstractGoogleCloudPage {
         waitForVisibility(totalEstimatedCostPerMonth);
         priceInReceivedEMail = Double.parseDouble(totalEstimatedCostPerMonth
                 .getText().replaceAll("[^0-9.]", ""));
+        log.info("Mail: open email and get price execution");
     }
 }

@@ -1,10 +1,7 @@
 package com.mycompany.app.page;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,7 +11,6 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
     protected CalculatorPage(WebDriver driver) {
         super(driver);
     }
-
 
     static ArrayList<String> tabs;
     public static Double calculatorPagePriceEstimation;
@@ -28,9 +24,6 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
     @FindBy(xpath = "//label[text()='Operating System / Software']/../md-select")
     private WebElement operatingSystem;
     private String softwareMDOptions = "//md-option//div[contains(text(), \"%s\")]";
-    //
-//    @FindBy(xpath = "//md-option[@value='free']")
-//    private WebElement optionFreeOS;
     //
     @FindBy(xpath = "//md-select[@placeholder='VM Class']")
     private WebElement machineClassWebElement;
@@ -113,41 +106,43 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
     public CalculatorPage activateFrame() {
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
+        log.info("CalculatorPage: activate Frame execution");
         return this;
     }
 
     public CalculatorPage selectComputeEngine() {
         waitForVisibility(computeEngine);
         computeEngine.click();
+        log.info("CalculatorPage: selectComputeEngine execution");
         return this;
     }
 
     public CalculatorPage inputNumberOfInstances(String number) {
         waitForVisibility(numberOfInstances);
         numberOfInstances.sendKeys(number);
+        log.info("CalculatorPage: inputNumberOfInstances execution");
         return this;
     }
 
     public CalculatorPage inputOS(String optionOS) {
-        //waitAndClick(operatingSystem);
-        //waitForVisibility(operatingSystem);
         click(operatingSystem);
         waitAndClickByOptions(softwareMDOptions, optionOS);
+        log.info("CalculatorPage: inputOS execution");
         return this;
     }
 
     public CalculatorPage inputMachineClass(String machineClass) {
-        //waitForVisibility(machineClassWebElement);
         click(machineClassWebElement);
         waitAndClickByOptions(machineClassMDOptions, machineClass).click();
+        log.info("CalculatorPage: inputMachineClass execution");
         return this;
     }
 
     public CalculatorPage inputSeries(String series) {
         waitForVisibility(seriesElement);
-        //waitUntilClickable(seriesElement);
         click(seriesElement);
         waitAndClickByOptions(seriesMDOptions, series).click();
+        log.info("CalculatorPage: inputSeries execution");
         return this;
     }
 
@@ -155,8 +150,7 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         waitForVisibility(machineTypeWebElement);
         click(machineTypeWebElement);
         waitAndClickByOptions(machineTypeOptions, machineType).click();
-//        waitForVisibility(optionMachineType);
-//        optionMachineType.click();
+        log.info("CalculatorPage: inputMachineType execution");
         return this;
     }
 
@@ -169,24 +163,15 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
             click(GPUtype);
             waitAndClickByOptions(typeOfGPUsDiv, typeOfGPUValue).click();
         }
-//        waitForVisibility(numberOfGPUs);
-//        numberOfGPUs.click();
-//        waitForVisibility(inputNumberOfGPU);
-//        inputNumberOfGPU.click();
-//        click(inputNumberOfGPU);
-//        waitForVisibility(GPUtype);
-//        GPUtype.click();
-//        waitForVisibility(inputTypeOfGPU);
-//        inputTypeOfGPU.click();
+        log.info("CalculatorPage: inputGPU execution");
         return this;
     }
 
     public CalculatorPage inputSSD(String SSDValue) {
         waitForVisibility(localSSD);
         localSSD.click();
-//        waitForVisibility(typeLocalSSD);
-//        typeLocalSSD.click();
         waitAndClickByOptions(localSSDDiv, SSDValue).click();
+        log.info("CalculatorPage: inputSSD execution");
         return this;
     }
 
@@ -194,23 +179,22 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         waitForVisibility(locationWebElement);
         locationWebElement.click();
         waitAndClickByOptions(locationDiv, locationString).click();
-//        waitForVisibility(typeLocation);
-//        typeLocation.click();
+        log.info("CalculatorPage: inputLocation execution");
         return this;
     }
 
     public CalculatorPage inputCommitedUsage(String usage) {
         waitForVisibility(committedUsage);
         committedUsage.click();
-//        waitForVisibility(typeCommittedUsage);
-//        typeCommittedUsage.click();
         waitAndClickByOptions(commitedUsageMdOption, usage).click();
+        log.info("CalculatorPage: inputCommitedUsage execution");
         return this;
     }
 
     public CalculatorPage addToEstimate() {
         waitForVisibility(addToEstimate);
         addToEstimate.click();
+        log.info("CalculatorPage: addToEstimate execution");
         return this;
     }
 
@@ -218,6 +202,7 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         waitForVisibility(emailEstimateElement);
         emailEstimateElement.click();
         waitForVisibility(buttonInputMail);
+        log.info("CalculatorPage: emailEstimate execution");
         return this;
     }
 
@@ -225,21 +210,23 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+        log.info("CalculatorPage: openNewTab execution");
         return this;
     }
 
     public CalculatorPage inputEmailAddress() {
-        //ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
         driver.switchTo().frame(0);
         driver.switchTo().frame("myFrame");
         buttonInputMail.sendKeys(Keys.CONTROL + "v");
+        log.info("CalculatorPage: inputEmailAddress execution");
         return this;
     }
 
     public CalculatorPage sendEmail() {
         waitAndClick(buttonSendEmail);
         buttonSendEmail.click();
+        log.info("CalculatorPage: sendEmail execution");
         return this;
     }
 
@@ -251,12 +238,13 @@ public class CalculatorPage extends AbstractGoogleCloudPage {
                 .replace("1 month", "")
                 .replaceAll("[^0-9.]", "");
         calculatorPagePriceEstimation = Double.parseDouble(priceString);
+        log.info("CalculatorPage: getPriceFromCalculator execution");
         return this;
     }
 
     public CalculatorPage switchToMailPage() {
         driver.switchTo().window(CalculatorPage.tabs.get(1));
+        log.info("CalculatorPage: switchToMailPage execution");
         return this;
     }
-
 }
