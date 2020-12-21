@@ -6,7 +6,6 @@ import com.mycompany.app.page.CalculatorPage;
 import com.mycompany.app.page.HomePage;
 import com.mycompany.app.page.MailService;
 import com.mycompany.app.service.CalculatorCreator;
-//import com.mycompany.app.service.Service;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
