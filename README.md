@@ -1,3 +1,3 @@
 # Framework-X2
-"Junior Test Automation Engineer in Java" course. Includes WebDriver Framework task.
+"Junior Test Automation Engineer in Java" EPAM course. Includes WebDriver Framework task.
 
